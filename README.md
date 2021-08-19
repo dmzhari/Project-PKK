@@ -1,16 +1,19 @@
 # Project PKK
 
-# Tanggal Mulai
+## Tanggal Mulai
 27 Juli 2021
 
-# Deskripsi
+## Deskripsi
 Project ini masih dalam pembuatan walau belum tau kedepannya akan dibuat seperti apa
 
-# Fitur Project
+## Fitur Project
 Dalam Tahap Pembuatan
 
-# Anggota 
+## Anggota 
 | Nama | Posisi | URL Profile |
 | ------ | ------ | ------ |
 | Hari Permana Sidiq | developer | https://github.com/dmzhari |
 | Andreas Dimas Suryanto | developer | https://github.com/AndreasCE |
+
+## License
+[GNU GPL v3](LICENSE)
