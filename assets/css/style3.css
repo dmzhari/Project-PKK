@@ -1,0 +1,41 @@
+.header-nav {
+    background-image: linear-gradient(-45deg, rgb(30, 202, 202), rgb(84, 84, 121));
+    background-size: 400% 200%;
+}
+
+.header-nav a {
+    color: #bd1298;
+}
+
+.header-nav a:hover {
+    color: rgb(212, 20, 20);
+}
+
+.nav-ac {
+    animation: animate__rotateIn 1s;
+    background-image: linear-gradient(-45deg, rgb(247, 248, 248), rgb(147, 147, 240));
+    background-size: 400% 200%;
+    border-radius: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+    .nav-ac {
+        animation: none;
+        width: fit-content;
+        border-radius: 10px;
+    }
+}
+
+@keyframes animate__rotateIn {
+    from {
+        -webkit-transform: rotate3d(0, 0, 1, -45deg);
+        transform: rotate3d(0, 0, 1, -45deg);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
