@@ -7,11 +7,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Login Admin">
 	<meta name="robots" content="nofollow, noindex">
+
+	<!-- Bootstrap Css -->
 	<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../assets/css/style.css">
+
+	<!-- Custom Css -->
+	<link rel="stylesheet" href="../assets/css/style.css?version=<?= filemtime('../assets/css/style.css') ?>">
+
+	<!-- Animate Css -->
 	<link rel="stylesheet" href="../assets/css/animate.min.css">
+
+	<!-- Font Awesome -->
 	<link rel="stylesheet" href="../assets/css/all.min.css">
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 	<title>Login Admin</title>
 </head>
 
@@ -52,7 +62,8 @@
 									<input type="password" name="pass" id="pass" class="bg-transparent font-weight-bold form-control" placeholder="password" required>
 								</div>
 							</div>
-							<button class="btn btn-dark form-control">Submit</button>
+							<button class="btn btn-dark form-control mb-1" id="login">Submit</button>
+							<button class="btn btn-primary form-control" id="back">Kembali</button>
 						</div>
 					</div>
 				</div>
@@ -64,11 +75,20 @@
 			<path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: rgb(160, 199, 233);"></path>
 		</svg>
 	</div>
+	<!-- Sweet2alert JS -->
 	<script src="../assets/js/sweetalert2.all.min.js"></script>
+
+	<!-- Jquery JS -->
 	<script src="../assets/js/jquery-3.6.0.js"></script>
+
+	<!-- Bootstrap JS -->
 	<script src="../assets/js/bootstrap.min.js"></script>
+
+	<!-- Popper JS -->
 	<script src="../assets/js/popper.min.js"></script>
-	<script src="../assets/js/login.js"></script>
+
+	<!-- Custom JS -->
+	<script src="../assets/js/login.js?version=<?= filemtime('../assets/js/login.js') ?>"></script>
 </body>
 
 </html>

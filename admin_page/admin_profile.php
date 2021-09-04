@@ -20,11 +20,24 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- Bootstrap Css -->
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/style2.css">
+
+    <!-- Custom Css -->
+    <link rel="stylesheet" href="../assets/css/style2.css?version=<?= filemtime('../assets/css/style2.css') ?>">
+
+    <!-- Animate Css -->
     <link rel="stylesheet" href="../assets/css/animate.min.css">
+
+    <!-- Lightbox Css -->
     <link rel="stylesheet" href="../assets/css/ekko-lightbox.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <title>Admin Dashboard</title>
 </head>
 
@@ -88,8 +101,6 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                 let myimage = $('#myprofile').prop('files')[0];
                 let alamat = $('#alamat').val();
                 let fd = new FormData();
-
-                console.log(myimage);
 
                 if (alamat.length == '') {
                     swal.fire({
