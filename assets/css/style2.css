@@ -1,62 +1,92 @@
-/* body {
-    background: url('../../admin_page/img/bg.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-} */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-#body-row {
-    margin-left: 0;
-    margin-right: 0;
+.img-nav {
+    background-image: linear-gradient(-45deg, rgb(247, 248, 248), rgb(147, 147, 240));
+    background-size: 400% 200%;
 }
 
-#sidebar-container {
-    min-height: 100vh;
-    background-color: #333;
-    padding: 0;
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
-.sidebar-expanded {
-    width: 230px;
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 40px 0 0;
 }
 
-.sidebar-collapsed {
-    width: 60px;
+@media (max-width: 767.98px) {
+    .sidebar {
+        top: 5rem;
+        padding: 20px;
+    }
 }
 
-#sidebar-container .list-group a {
-    height: 50px;
-    color: white;
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-
-#sidebar-container .list-group .sidebar-submenu a {
-    height: 45px;
-    padding-left: 30px;
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+        position: -webkit-sticky;
+        position: sticky;
+    }
 }
 
-.sidebar-submenu {
-    font-size: 0.9rem;
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
 }
 
-.sidebar-separator-title {
-    background-color: #333;
-    height: 35px;
+.sidebar {
+    color: #007bff;
 }
 
-.sidebar-separator {
-    background-color: #333;
-    height: 25px;
+.sidebar .nav-link:hover {
+    color: inherit;
 }
 
-#sidebar-container .list-group .list-group-item[aria-expanded="false"] .fa-caret-down::after {
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+.navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, .25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+}
+
+.navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+}
+
+.fa-caret-down::after {
     display: inline;
     text-align: right;
     padding-left: 10px;
 }
 
-#sidebar-container .list-group .list-group-item[aria-expanded="true"] .fa-caret-down::after {
-    display: inline;
-    text-align: right;
-    padding-left: 10px;
+.submenu a {
+    color: #000;
+    text-decoration: none;
+}
+
+.submenu a:hover {
+    color: blue;
+}
+
+.submenu li {
+    list-style-type: none;
 }

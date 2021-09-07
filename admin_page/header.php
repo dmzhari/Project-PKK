@@ -1,62 +1,56 @@
-<nav class="navbar navbar-expand-md navbar-dark img-nav">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+<!-- Navbar -->
+<nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow img-nav">
+    <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<?= $_SERVER['PHP_SELF'] ?>">Hello <?= $_SESSION['username'] ?></a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
-        Welcome <?= $_SESSION['username'] ?>
-    </a>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-            <li class="nav-item d-sm-block d-md-none">
-                <a href="<?= dirname($_SERVER['PHP_SELF']) ?>" class="nav-link">Dashboard</a>
-            </li>
-            <li class="nav-item dropdown d-sm-block d-md-none">
-                <a class="nav-link dropdown-toggle" href="#" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    User
-                </a>
-                <div class="dropdown-menu animate__animated animate__fadeInRight" aria-labelledby="profile">
-                    <a href="admin_profile.php" class="dropdown-item">Profile</a>
-                    <a href="admin_password.php" class="dropdown-item">Setting Password</a>
-                </div>
-            </li>
-        </ul>
-    </div>
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="logout.php">Sign out</a>
+        </li>
+    </ul>
 </nav>
 
-<div class="row" id="body-row">
-    <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
-        <ul class="list-group">
-            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center">
-                <small>MAIN MENU</small>
-            </li>
-            <a href="<?= dirname($_SERVER['PHP_SELF']) ?>" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fas fa-home fa-fw mr-3"></span>
-                    <span>Dashboard</span>
-                </div>
-            </a>
-            <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-user fa-fw mr-3"></span>
-                    <span>User</span>
-                    <span class="fas fa-caret-down ml-auto"></span>
-                </div>
-            </a>
-            <div id='submenu2' class="collapse sidebar-submenu">
-                <a href="admin_profile.php" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span>Profile</span>
-                </a>
-                <a href="admin_password.php" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span>Setting Password</span>
-                </a>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= dirname($_SERVER['PHP_SELF']) ?>">
+                            <span class="fas fa-home fa-fw mr-2"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#submenu" data-toggle="collapse" aria-expanded="false">
+                            <span class="fa fa-user fa-fw mr-2"></span>
+                            User <span class="fas fa-caret-down ml-auto"></span>
+                        </a>
+                        <div id='submenu' class="collapse submenu">
+                            <ul>
+                                <li>
+                                    <a href="admin_profile.php">
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <a href="admin_password.php">
+                                    <span>Setting Password</span>
+                                </a>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin_pengaturan.php">
+                            <span class="fas fa-wrench fa-fw mr-2"></span>
+                            <span>Pengaturan Website</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <a href="logout.php" class="bg-dark list-group-item list-group-item-action flex-column align-items-start text-danger">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fas fa-sign-out-alt fa-fw mr-3"></span>
-                    <span>Logout</span>
-                </div>
-            </a>
-        </ul>
-    </div> <!-- End Sidebar -->
+        </nav>
+    </div>
+</div>
+<!-- End Sidebar -->
 
-    <!-- MAIN -->
+<!-- MAIN -->

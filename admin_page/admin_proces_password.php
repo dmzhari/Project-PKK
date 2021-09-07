@@ -1,5 +1,5 @@
 <?php
-include 'config/functions.php';
+include '../config/functions.php';
 error_reporting(0);
 
 $ypas   = htmlspecialchars(addslashes(trim($_POST['ypass'])));

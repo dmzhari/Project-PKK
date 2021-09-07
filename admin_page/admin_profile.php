@@ -2,7 +2,7 @@
 error_reporting(0);
 session_start();
 
-include 'config/functions.php';
+include '../config/functions.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -44,7 +44,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
 <body>
     <?php include 'header.php' ?>
 
-    <div class="col-md pt-3">
+    <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
         <div class="d-flex justify-content-center">
             <a href="img/<?= $query[0]['image'] ?>" class="btn" data-title="Profile image" data-max-height="400" data-toggle="lightbox">
                 <img src="img/<?= $query[0]['image'] ?>" class="rounded rounded-circle" width="160px">
@@ -53,11 +53,11 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
         <div class="form-group">
             <div class="input-group is-invalid">
                 <div class="input-group-prepend">
-                    <label class="input-group-text bg-transparent" for="ypass">
+                    <label class="input-group-text bg-transparent" for="username">
                         Username
                     </label>
                 </div>
-                <input type="text" class="bg-transparent form-control" value="<?= $query[0]['username'] ?>" readonly>
+                <input type="text" class="bg-transparent form-control" id="username" value="<?= $query[0]['username'] ?>" readonly>
             </div>
         </div>
         <div class="form-group">
@@ -97,6 +97,15 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
         });
 
         $(document).ready(function() {
+            $('#username').click(function(e) {
+                e.preventDefault();
+                swal.fire({
+                    icon: 'warning',
+                    title: 'Oppsss...',
+                    text: 'Username Is Readonly!!'
+                });
+            });
+
             $('#edit').click(function() {
                 let myimage = $('#myprofile').prop('files')[0];
                 let alamat = $('#alamat').val();

@@ -1,5 +1,5 @@
 <?php
-include 'config/functions.php';
+include '../config/functions.php';
 
 error_reporting(0);
 session_start();

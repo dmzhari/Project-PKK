@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config/functions.php';
+include '../config/functions.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
 	header('location: login.php');
@@ -38,7 +38,7 @@ $query = query("SELECT * FROM tblogin");
 <body>
 	<?php include 'header.php' ?>
 
-	<div class="col-md pt-3">
+	<div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
 		<h3 class="text-center">Data Access Login</h3>
 		<div class="table-responsive-md">
 			<table class="table table-bordered table-striped table-hover">

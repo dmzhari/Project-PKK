@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 session_start();
-include 'config/functions.php';
+include '../config/functions.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -40,7 +40,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
 <body>
     <?php include 'header.php' ?>
 
-    <div class="col-md pt-3">
+    <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
         <div class="text-center">
             <h4>Form Change Password</h4>
         </div>
@@ -64,6 +64,10 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                 <input type="password" name="npass" id="npass" class="bg-transparent form-control" placeholder="New Password" required>
             </div>
         </div>
+        <div class="form-group custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="showpass">
+            <label class="custom-control-label" for="showpass">Show Password</label>
+        </div>
         <button class="btn btn-dark form-control" id="submit">Submit</button>
     </div>
     </div>
@@ -81,6 +85,16 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
     <script src="../assets/js/popper.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#showpass').click(function(e) {
+                if ($(this).is(':checked')) {
+                    $('#ypass').attr('type', 'text');
+                    $('#npass').attr('type', 'text');
+                } else {
+                    $('#ypass').attr('type', 'password');
+                    $('#npass').attr('type', 'password');
+                }
+            });
+
             $('#submit').click(function() {
                 let ypass = $('#ypass').val();
                 let npass = $('#npass').val();

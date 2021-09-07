@@ -1,5 +1,11 @@
 $(document).ready(function () {
-    $('.btn').click(function () {
+
+    $('#back').click(function (e) {
+        e.preventDefault();
+        history.back(1);
+    });
+
+    $('#login').click(function () {
         let user = $('#user').val();
         let pass = $('#pass').val();
 
