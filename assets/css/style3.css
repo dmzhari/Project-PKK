@@ -109,8 +109,12 @@ section {
     color: #fa0872;
 }
 
-.judul-syarat {
+.judul {
     text-align: left;
+}
+
+.deskripsi {
+    word-wrap: break-word;
 }
 
 .nav-ac {
@@ -167,10 +171,7 @@ section {
         margin-left: 0.5%;
     }
 
-    .contact .card-body {
-        box-shadow: none;
-    }
-
+    .contact .card-body,
     .contact .card-header {
         box-shadow: none;
     }
@@ -183,7 +184,7 @@ section {
         text-align: center;
     }
 
-    .judul-syarat {
+    .judul {
         text-align: center;
         margin-top: 10px;
     }

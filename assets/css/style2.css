@@ -9,6 +9,15 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.pengaturan td a {
+    color: rgb(21, 3, 71);
+    text-decoration: none;
+}
+
+.pengaturan td a:hover {
+    color: #007bff;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -84,7 +93,7 @@ body {
 }
 
 .submenu a:hover {
-    color: blue;
+    color: #007bff;
 }
 
 .submenu li {
