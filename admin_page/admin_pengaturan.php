@@ -8,6 +8,8 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
     header('location: login.php');
     exit();
 }
+
+$link = query('SELECT * FROM tbpengaturan');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,12 +44,13 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
     <?php include 'header.php' ?>
 
     <div class="container">
+
         <div class="row">
             <div class="col-md-9 p-3 px-md-4 mr-auto offset-md-3">
                 <h5 class="text-center">Pengaturan Edit Pendaftaran</h5>
                 <div class="d-flex justify-content-between text-center">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped pengaturan">
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
@@ -58,18 +61,136 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
                                 <td>Alur Pendaftaran</td>
                                 <td><a href="admin_alur.php">Edit</a></td>
                             </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Syarat Pendaftaran</td>
+                                <td><a href="admin_syarat.php">Edit</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Panduan Pendaftaran</td>
+                                <td><a href="admin_pandu.php">Edit</a></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-9 p-3 px-md-4 mr-auto offset-md-3">
+                <h5 class="text-center">Pengaturan Link</h5>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="yt">
+                                <i class="fab fa-youtube"></i>
+                            </label>
+                        </div>
+                        <input type="text" id="yt" class="bg-transparent form-control" placeholder="link youtube" value="<?= $link[0]['youtube'] ?>" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="twitt">
+                                <i class="fab fa-twitter"></i>
+                            </label>
+                        </div>
+                        <input type="text" id="twitt" class="bg-transparent form-control" placeholder="link twitter" value="<?= $link[0]['twitter'] ?>" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="inst">
+                                <i class="fab fa-instagram"></i>
+                            </label>
+                        </div>
+                        <input type="text" id="inst" class="bg-transparent form-control" placeholder="link instagram" value="<?= $link[0]['instagram'] ?>" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="facebook">
+                                <i class="fab fa-facebook"></i>
+                            </label>
+                        </div>
+                        <input type="text" id="facebook" class="bg-transparent form-control" placeholder="link facebook" value="<?= $link[0]['facebook'] ?>" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="wa">
+                                <i class="fab fa-whatsapp"></i>
+                            </label>
+                        </div>
+                        <input type="telp" id="wa" class="bg-transparent form-control" placeholder="nomor whatsapp" value="<?= $link[0]['whatsapp'] ?>" required>
+                    </div>
+                </div>
+                <button class="btn btn-primary form-control" id="link">Edit</button>
+            </div>
+        </div>
+
     </div>
 
+    <!-- Jquery JS -->
     <script src="../assets/js/jquery-3.6.0.js"></script>
+
+    <!-- Bootstrap JS -->
     <script src="../assets/js/bootstrap.min.js"></script>
+
+    <!-- Sweet2alert JS -->
     <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+    <!-- Lighbox JS -->
     <script src="../assets/js/ekko-lightbox.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#link').click(function() {
+                let yt = $('#yt').val();
+                let inst = $('#inst').val();
+                let twitt = $('#twitt').val();
+                let wa = $('#wa').val();
+                let facebook = $('#facebook').val();
+
+                $.ajax({
+                    url: "admin_proces_link.php",
+                    type: "POST",
+                    data: {
+                        "fb": facebook,
+                        "yt": yt,
+                        "inst": inst,
+                        "wa": wa,
+                        "twitt": twitt
+                    },
+                    success: function(e) {
+                        if (e == 'success') {
+                            swal.fire({
+                                icon: 'success',
+                                title: 'Data Success Edit'
+                            });
+                        } else {
+                            swal.fire({
+                                icon: 'warning',
+                                title: 'Data Failed Edited'
+                            });
+                        }
+                    },
+                    error: function() {
+                        swal.fire({
+                            icon: 'error',
+                            title: 'Opps!',
+                            text: 'Server Error'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

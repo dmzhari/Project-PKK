@@ -81,8 +81,6 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
     <!-- Sweet2alert Js -->
     <script src="../assets/js/sweetalert2.all.min.js"></script>
 
-    <!-- Popper Js -->
-    <script src="../assets/js/popper.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#showpass').click(function(e) {

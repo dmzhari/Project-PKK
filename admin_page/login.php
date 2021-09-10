@@ -84,9 +84,6 @@
 	<!-- Bootstrap JS -->
 	<script src="../assets/js/bootstrap.min.js"></script>
 
-	<!-- Popper JS -->
-	<script src="../assets/js/popper.min.js"></script>
-
 	<!-- Custom JS -->
 	<script src="../assets/js/login.js?version=<?= filemtime('../assets/js/login.js') ?>"></script>
 </body>
