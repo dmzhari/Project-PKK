@@ -60,7 +60,7 @@ $link = query("SELECT * FROM tbpengaturan");
                 <div class="row text-center">
                     <div class="col-md-12 animate__animated animate__fadeInDown">
                         <div class="title">
-                            <h3>Syarat Pendaftaran</h3>
+                            <h3>Alur Pendaftaran</h3>
                         </div>
                     </div>
                 </div>
@@ -74,10 +74,10 @@ $link = query("SELECT * FROM tbpengaturan");
                 <div class="col-md-12">
                     <?php foreach ($query as $row) { ?>
                         <div class="judul">
-                            <h4><?= $row['jdsyarat'] ?></h4>
+                            <h4><?= $row['jdalur'] ?></h4>
                         </div>
                         <div class="deskripsi">
-                            <?= htmlspecialchars_decode($row['syaratdaftar']) ?>
+                            <?= htmlspecialchars_decode($row['alurdaftar']) ?>
                         </div>
                     <?php } ?>
                 </div>

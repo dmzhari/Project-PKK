@@ -1,5 +1,7 @@
 <?php
 include 'config/functions.php';
+
+$query = query("SELECT * FROM tbpengaturan");
 ?>
 
 <!DOCTYPE html>
@@ -55,8 +57,8 @@ include 'config/functions.php';
     <section class="header">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <div class="row text-center">
-                    <div class="col-md-4 animate__animated animate__fadeInDown">
+                <div class="row text-center animate__animated animate__fadeInDown">
+                    <div class="col-md-4">
                         <div class="title">
                             <h3>Syarat Pendaftaran</h3>
                         </div>
@@ -65,7 +67,7 @@ include 'config/functions.php';
                             <a href="syarat.php">Lihat Selengkapnya</a>
                         </div>
                     </div>
-                    <div class="col-md-4 animate__animated animate__fadeInDown">
+                    <div class="col-md-4">
                         <div class="title">
                             <h3>Alur Pendaftaran</h3>
                         </div>
@@ -74,7 +76,7 @@ include 'config/functions.php';
                             <a href="alur.php">Lihat Selengkapnya</a>
                         </div>
                     </div>
-                    <div class="col-md-4" data-aos="fade-down" data-aos-duration="1000">
+                    <div class="col-md-4">
                         <div class="title">
                             <h3>Panduan Pendaftaran</h3>
                         </div>
@@ -159,7 +161,7 @@ include 'config/functions.php';
                             <a href="<?= $query[0]['twitter'] ?>">
                                 <i class="fab fa-twitter-square"></i>
                             </a>
-                            <a href="<?= $query[0]['whatsapp'] ?>">
+                            <a href="https://wa.me/<?= $query[0]['whatsapp'] ?>">
                                 <i class="fab fa-whatsapp-square"></i>
                             </a>
                             <a href="<?= $query[0]['youtube'] ?>">
