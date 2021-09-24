@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 
 include '../config/functions.php';
+include 'csrf-protect.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -54,10 +55,11 @@ $query = query('SELECT * FROM tbdaftar');
                                 Judul
                             </label>
                         </div>
-                        <input type="text" name="judul" id="judul" class="bg-transparent form-control" placeholder="Masukan Judul" value="<?= $query[0]['jdalur'] ?>" required>
+                        <input type="text"  id="judul" class="bg-transparent form-control" placeholder="Masukan Judul" value="<?= $query[0]['jdalur'] ?>" required>
                     </div>
                     <textarea class="form-control"><?= $query[0]['alurdaftar'] ?></textarea>
                 </div>
+                <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
                 <button class="btn btn-primary form-control" id="sub">Submit</button>
             </div>
         </div>
@@ -98,13 +100,15 @@ $query = query('SELECT * FROM tbdaftar');
             $('#sub').click(function() {
                 let dest = tinyMCE.activeEditor.getContent();
                 let judul = $('#judul').val();
+                let csrf = $('#csrf').val();
 
                 $.ajax({
                     url: "admin_proces_alur.php",
                     type: "POST",
                     data: {
                         "judul": judul,
-                        "description": dest
+                        "description": dest,
+                        "csrf": csrf
                     },
                     success: function(e) {
                         if (e == 'success') {

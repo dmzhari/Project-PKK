@@ -43,10 +43,17 @@ $link = query("SELECT * FROM tbpengaturan");
             <div id="menu" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#" role="button" class="nav-link">About</a>
+                        <a href="about.php" role="button" class="nav-link">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" role="button" class="nav-link">Pendaftaran</a>
+                    <li class="nav-item dropdown">
+                        <a href="#" role="button" class="nav-link dropdown-toggle" id="submenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pendaftaran
+                        </a>
+                        <div class="dropdown-menu animate__animated" aria-labelledby="submenu">
+                            <a class="dropdown-item" href="alur.php">Alur Pendaftaran</a>
+                            <a class="dropdown-item" href="syarat.php">Syarat Pendaftaran</a>
+                            <a class="dropdown-item" href="panduan.php">Panduan Pendaftaran</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -68,7 +75,7 @@ $link = query("SELECT * FROM tbpengaturan");
         </div>
     </div>
 
-    <section class="syarat text-white">
+    <section class="text-white">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

@@ -1,5 +1,6 @@
 <?php
 include 'config/functions.php';
+include 'admin_page/csrf-protect.php';
 
 $query = query("SELECT * FROM tbpengaturan");
 ?>
@@ -43,10 +44,17 @@ $query = query("SELECT * FROM tbpengaturan");
             <div id="menu" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="#" role="button" class="nav-link">About</a>
+                        <a href="about.php" role="button" class="nav-link">About</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" role="button" class="nav-link">Pendaftaran</a>
+                    <li class="nav-item dropdown">
+                        <a href="#" role="button" class="nav-link dropdown-toggle" id="submenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pendaftaran
+                        </a>
+                        <div class="dropdown-menu animate__animated" aria-labelledby="submenu">
+                            <a class="dropdown-item" href="alur.php">Alur Pendaftaran</a>
+                            <a class="dropdown-item" href="syarat.php">Syarat Pendaftaran</a>
+                            <a class="dropdown-item" href="panduan.php">Panduan Pendaftaran</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -54,7 +62,7 @@ $query = query("SELECT * FROM tbpengaturan");
     </nav>
 
     <!-- Main -->
-    <section class="header">
+    <section class="header" id="header">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <div class="row text-center animate__animated animate__fadeInDown">
@@ -94,22 +102,16 @@ $query = query("SELECT * FROM tbpengaturan");
     <div class="contact">
         <div class="container">
             <div class="row" data-aos="fade-down" data-aos-duration="2000">
-                <div class="card col-md-8 offset-md-2">
+                <div class="card col-md-6 offset-md-3">
                     <div class="card-header text-center">
-                        <h2>Kontak Kami</h2>
+                        <h2>Login PPDB</h2>
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nama" placeholder="nama">
+                            <input type="text" class="form-control" id="nis" placeholder="nis">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" placeholder="email">
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" id="telp" placeholder="nomor telp">
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" id="pesan" placeholder="masukan pesan"></textarea>
+                            <input type="password" class="form-control" id="pass" placeholder="password">
                         </div>
                         <button class="btn btn-primary form-control" id="submit">Submit</button>
                     </div>
@@ -117,28 +119,6 @@ $query = query("SELECT * FROM tbpengaturan");
             </div>
         </div>
     </div>
-
-    <!-- Login PPDB
-    <section class="login">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 offset-md-4">
-                    <div class="card">
-                        <div class="card-header text-center">
-                            <p>Login PPDB</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="login-form">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="username">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Footer -->
     <div class="footer">
@@ -205,54 +185,40 @@ $query = query("SELECT * FROM tbpengaturan");
             });
 
             $('#submit').click(function() {
-                let nama = $('#nama').val();
-                let email = $('#email').val();
-                let telp = $('#telp').val();
-                let pesan = $('#pesan').val();
+                let nis = $('#nis').val();
+                let pass = $('#pass').val();
 
-                if (nama && email && telp && pesan !== '') {
-                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                        $.ajax({
-                            url: "user_kontak.php",
-                            type: 'POST',
-                            data: {
-                                "nama": nama,
-                                "email": email,
-                                "telp": telp,
-                                "pesan": pesan,
-                                "sub": 'submit'
-                            },
-                            success: function(respone) {
-                                if (respone == 'success') {
-                                    swal.fire({
-                                        icon: 'success',
-                                        title: 'Email Terkirim',
-                                        text: 'Terima Kasih Telah Kontak Kami'
-                                    });
-                                } else {
-                                    swal.fire({
-                                        icon: 'warning',
-                                        title: 'Email Gagal Terkirim'
-                                    });
-                                }
-
-                                console.log(respone);
-                            },
-                            error: function() {
+                if (nis && pass !== '') {
+                    $.ajax({
+                        url: "user_login.php",
+                        type: 'POST',
+                        data: {
+                            "nis": nis,
+                            "pass": pass,
+                            "sub": 'submit'
+                        },
+                        success: function(respone) {
+                            if (respone == 'success') {
                                 swal.fire({
-                                    icon: 'error',
-                                    title: 'Opps!',
-                                    text: 'Server Error'
+                                    icon: 'success',
+                                    title: 'Success Login',
+                                });
+                                window.location.href = 'user_dashboard.php';
+                            } else {
+                                swal.fire({
+                                    icon: 'warning',
+                                    title: 'Gagal Login'
                                 });
                             }
-                        });
-                    } else {
-                        swal.fire({
-                            icon: 'warning',
-                            title: 'Email No Valid',
-                            text: 'Masukan email dengan benar!'
-                        });
-                    }
+                        },
+                        error: function() {
+                            swal.fire({
+                                icon: 'error',
+                                title: 'Opps!',
+                                text: 'Server Error'
+                            });
+                        }
+                    });
                 } else {
                     swal.fire({
                         icon: 'warning',

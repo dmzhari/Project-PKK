@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 
 include '../config/functions.php';
+include 'csrf-protect.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -58,6 +59,7 @@ $query = query('SELECT * FROM tbdaftar');
                     </div>
                     <textarea class="form-control"><?= $query[0]['syaratdaftar'] ?></textarea>
                 </div>
+                <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
                 <button class="btn btn-primary form-control" id="sub">Submit</button>
             </div>
         </div>
@@ -98,6 +100,7 @@ $query = query('SELECT * FROM tbdaftar');
             $('#sub').click(function() {
                 let dest = tinyMCE.activeEditor.getContent();
                 let judul = $('#judul').val();
+                let csrf = $('#csrf').val();
 
                 $.ajax({
                     url: "admin_proces_syarat.php",

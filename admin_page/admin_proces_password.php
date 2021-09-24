@@ -1,6 +1,7 @@
 <?php
 include '../config/functions.php';
-error_reporting(0);
+include 'csrf-protect.php';
+
 session_start();
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
@@ -10,14 +11,18 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password'])) {
 $ypas   = htmlspecialchars(addslashes(trim($_POST['ypass'])));
 $npas   = htmlspecialchars(addslashes(trim($_POST['npass'])));
 $id     = htmlspecialchars(addslashes(trim($_POST['id'])));
+$csrf   = htmlspecialchars(addslashes(trim($_POST['csrf'])));
 
 $check = query("SELECT * FROM tblogin WHERE id = '$id'");
-if ($check[0]['password'] == $ypas) {
-    $query = "UPDATE tblogin SET password = '$npas' WHERE id = '$id'";
 
-    mysqli_query($con, $query);
+if ($ypas == $check[0]['password']) {
+    if (check_csrf($csrf)) {
+        $query = "UPDATE tblogin SET password = '$npas' WHERE id = '$id'";
 
-    echo 'success';
+        mysqli_query($con, $query);
+
+        echo 'success';
+    }
 } else {
     echo 'password not same';
 }

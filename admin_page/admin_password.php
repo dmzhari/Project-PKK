@@ -2,6 +2,7 @@
 error_reporting(0);
 session_start();
 include '../config/functions.php';
+include 'csrf-protect.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -51,7 +52,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                         <i class="fas fa-key"></i>
                     </label>
                 </div>
-                <input type="password" name="ypass" id="ypass" class="bg-transparent form-control" placeholder="Your Password" required>
+                <input type="password" id="ypass" class="bg-transparent form-control" placeholder="Your Password" required>
             </div>
         </div>
         <div class="form-group">
@@ -61,13 +62,14 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                         <i class="fas fa-key"></i>
                     </label>
                 </div>
-                <input type="password" name="npass" id="npass" class="bg-transparent form-control" placeholder="New Password" required>
+                <input type="password" id="npass" class="bg-transparent form-control" placeholder="New Password" required>
             </div>
         </div>
         <div class="form-group custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="showpass">
             <label class="custom-control-label" for="showpass">Show Password</label>
         </div>
+        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
         <button class="btn btn-dark form-control" id="submit">Submit</button>
     </div>
     </div>
@@ -96,6 +98,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
             $('#submit').click(function() {
                 let ypass = $('#ypass').val();
                 let npass = $('#npass').val();
+                let csrf = $('#csrf').val();
 
                 if (ypass.length == '') {
                     swal.fire({
@@ -116,16 +119,19 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                         data: {
                             "id": <?= $query[0]['id'] ?>,
                             "ypass": ypass,
-                            "npass": npass
+                            "npass": npass,
+                            "csrf": csrf
                         },
                         success: function(check) {
                             if (check == "success") {
                                 swal.fire({
                                     icon: 'success',
                                     title: 'Change Password Success'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.reload();
+                                    }
                                 });
-                                $('#ypass').val('');
-                                $('#npass').val('');
                             } else if (check == "password not same") {
                                 swal.fire({
                                     icon: 'warning',

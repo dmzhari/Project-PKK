@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 
 include '../config/functions.php';
+include 'csrf-protect.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -93,6 +94,16 @@ $link = query('SELECT * FROM tbpengaturan');
                 <div class="form-group">
                     <div class="input-group is-invalid">
                         <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="email">
+                                <i class="fas fa-envelope"></i>
+                            </label>
+                        </div>
+                        <input type="text" id="email" class="bg-transparent form-control" placeholder="link twitter" value="<?= $link[0]['email'] ?>" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
                             <label class="input-group-text bg-transparent" for="twitt">
                                 <i class="fab fa-twitter"></i>
                             </label>
@@ -130,6 +141,7 @@ $link = query('SELECT * FROM tbpengaturan');
                         <input type="telp" id="wa" class="bg-transparent form-control" placeholder="nomor whatsapp" value="<?= $link[0]['whatsapp'] ?>" required>
                     </div>
                 </div>
+                <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
                 <button class="btn btn-primary form-control" id="link">Edit</button>
             </div>
         </div>
@@ -156,6 +168,8 @@ $link = query('SELECT * FROM tbpengaturan');
                 let twitt = $('#twitt').val();
                 let wa = $('#wa').val();
                 let facebook = $('#facebook').val();
+                let email = $('#email').val();
+                let csrf = $('#csrf').val();
 
                 $.ajax({
                     url: "admin_proces_link.php",
@@ -165,7 +179,9 @@ $link = query('SELECT * FROM tbpengaturan');
                         "yt": yt,
                         "inst": inst,
                         "wa": wa,
-                        "twitt": twitt
+                        "twitt": twitt,
+                        "email": email,
+                        "csrf": csrf
                     },
                     success: function(e) {
                         if (e == 'success') {

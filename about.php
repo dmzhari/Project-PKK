@@ -1,7 +1,6 @@
 <?php
 include 'config/functions.php';
 
-$query = query('SELECT * FROM tbdaftar');
 $link = query("SELECT * FROM tbpengaturan");
 ?>
 <!DOCTYPE html>
@@ -67,7 +66,7 @@ $link = query("SELECT * FROM tbpengaturan");
                 <div class="row text-center">
                     <div class="col-md-12 animate__animated animate__fadeInDown">
                         <div class="title">
-                            <h3>Alur Pendaftaran</h3>
+                            <h3>About Us</h3>
                         </div>
                     </div>
                 </div>
@@ -75,22 +74,38 @@ $link = query("SELECT * FROM tbpengaturan");
         </div>
     </div>
 
-    <section class="syarat text-white">
+    <section class="about text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
-                    <?php foreach ($query as $row) { ?>
-                        <div class="judul">
-                            <h4><?= $row['jdalur'] ?></h4>
-                        </div>
-                        <div class="deskripsi">
-                            <?= htmlspecialchars_decode($row['alurdaftar']) ?>
-                        </div>
-                    <?php } ?>
+                <div class="col-md-4 pt-3">
+                    <h4>
+                        <i class="fas fa-home"></i>
+                        Alamat
+                    </h4>
+                    <p><?= $link[0]['alamat'] ?></p>
+                </div>
+                <div class="col-md-4 pt-3">
+                    <h4>
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </h4>
+                    <p><a href="mailto:<?= $link[0]['email'] ?>"><?= $link[0]['email'] ?></a></p>
+                </div>
+                <div class="col-md-4 pt-3">
+                    <h4>
+                        <i class="fas fa-phone"></i>
+                        Nomo telp
+                    </h4>
+                    <p><?= $link[0]['whatsapp'] ?></p>
+                </div>
+                <div class="col-md-12 pt-4">
+                    <h5><?= $link[0]['about'] ?></h5>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="map"></div>
 
     <!-- Footer -->
     <div class="footer">

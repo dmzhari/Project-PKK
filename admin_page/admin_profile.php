@@ -3,6 +3,7 @@ error_reporting(0);
 session_start();
 
 include '../config/functions.php';
+include 'csrf-protect.php';
 
 if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: login.php');
@@ -74,6 +75,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
             <input type="file" class="custom-file-input" id="myprofile" name="myimage">
             <label class="custom-file-label" for="myprofile">Chose file to change image</label>
         </div>
+        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
         <button class="btn btn-primary mt-2 form-control" id="edit">Edit data</button>
     </div>
     <script src="../assets/js/jquery-3.6.0.js"></script>
@@ -109,6 +111,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
             $('#edit').click(function() {
                 let myimage = $('#myprofile').prop('files')[0];
                 let alamat = $('#alamat').val();
+                let csrf = $('#csrf').val();
                 let fd = new FormData();
 
                 if (alamat.length == '') {
@@ -127,6 +130,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                     fd.append('file', myimage);
                     fd.append('id', <?= $query[0]['id'] ?>);
                     fd.append('alamat', alamat);
+                    fd.append('csrf', csrf);
 
                     $.ajax({
                         type: 'POST',
