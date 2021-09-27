@@ -84,6 +84,9 @@ $query = query('SELECT * FROM tbpengumuman');
     <!-- Sweet2alert JS -->
     <script src="../assets/js/sweetalert2.all.min.js"></script>
 
+    <!-- Tinymce JS -->
+    <script src="../assets/tinymce/tinymce.min.js"></script>
+
     <script>
         $(document).ready(function() {
             let opsi = $('#pengumuman').find('a');
