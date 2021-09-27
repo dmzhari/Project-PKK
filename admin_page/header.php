@@ -23,6 +23,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="admin_pengumuman.php">
+                            <span class="fas fa-bullhorn fa-fw mr-2"></span>
+                            Pengumuman
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#submenu" data-toggle="collapse" aria-expanded="false">
                             <span class="fa fa-user fa-fw mr-2"></span>
                             User <span class="fas fa-caret-down ml-auto"></span>

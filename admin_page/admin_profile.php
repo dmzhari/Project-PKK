@@ -12,6 +12,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
 
 $user = $_SESSION['username'];
 $query = query("SELECT * FROM tblogin WHERE username = '$user'");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,17 +59,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                         Username
                     </label>
                 </div>
-                <input type="text" class="bg-transparent form-control" id="username" value="<?= $query[0]['username'] ?>" readonly>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="input-group is-invalid">
-                <div class="input-group-prepend">
-                    <label class="input-group-text bg-transparent" for="alamat">
-                        alamat
-                    </label>
-                </div>
-                <textarea class="bg-transparent form-control" id="alamat"><?= $query[0]['alamat'] ?></textarea>
+                <input type="text" class="bg-transparent form-control" id="username" value="<?= $query[0]['username'] ?>">
             </div>
         </div>
         <div class="custom-file">
@@ -78,11 +69,18 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
         <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
         <button class="btn btn-primary mt-2 form-control" id="edit">Edit data</button>
     </div>
+
+    <!-- Jquery -->
     <script src="../assets/js/jquery-3.6.0.js"></script>
+
+    <!-- Bootrap Js -->
     <script src="../assets/js/bootstrap.min.js"></script>
+
+    <!-- Sweet2Alert Js -->
     <script src="../assets/js/sweetalert2.all.min.js"></script>
+
+    <!-- Lighbox Js -->
     <script src="../assets/js/ekko-lightbox.min.js"></script>
-    <script src="../assets/js/popper.min.js"></script>
     <script>
         $(document).on('click', '[data-toggle="lightbox"]', function(event) {
             event.preventDefault();
@@ -99,26 +97,17 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
         });
 
         $(document).ready(function() {
-            $('#username').click(function(e) {
-                e.preventDefault();
-                swal.fire({
-                    icon: 'warning',
-                    title: 'Oppsss...',
-                    text: 'Username Is Readonly!!'
-                });
-            });
-
             $('#edit').click(function() {
                 let myimage = $('#myprofile').prop('files')[0];
-                let alamat = $('#alamat').val();
+                let username = $('#username').val();
                 let csrf = $('#csrf').val();
                 let fd = new FormData();
 
-                if (alamat.length == '') {
+                if (username.length == '') {
                     swal.fire({
                         icon: 'warning',
                         title: 'Oppsss..',
-                        text: 'Please alamat dont empty'
+                        text: 'Please username dont empty'
                     });
                 } else if (myimage == undefined) {
                     swal.fire({
@@ -129,7 +118,7 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
                 } else {
                     fd.append('file', myimage);
                     fd.append('id', <?= $query[0]['id'] ?>);
-                    fd.append('alamat', alamat);
+                    fd.append('username', username);
                     fd.append('csrf', csrf);
 
                     $.ajax({

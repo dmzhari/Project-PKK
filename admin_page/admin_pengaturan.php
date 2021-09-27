@@ -141,6 +141,10 @@ $link = query('SELECT * FROM tbpengaturan');
                         <input type="telp" id="wa" class="bg-transparent form-control" placeholder="nomor whatsapp" value="<?= $link[0]['whatsapp'] ?>" required>
                     </div>
                 </div>
+                <div class="form-group pt-3">
+                    <h5 class="text-center">Alamat</h5>
+                    <textarea class="form-control" rows="4" id="alamat" placeholder="alamat sekolah"><?= $link[0]['alamat'] ?></textarea>
+                </div>
                 <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
                 <button class="btn btn-primary form-control" id="link">Edit</button>
             </div>
@@ -169,6 +173,7 @@ $link = query('SELECT * FROM tbpengaturan');
                 let wa = $('#wa').val();
                 let facebook = $('#facebook').val();
                 let email = $('#email').val();
+                let alamat = $('#alamat').val();
                 let csrf = $('#csrf').val();
 
                 $.ajax({
@@ -181,6 +186,7 @@ $link = query('SELECT * FROM tbpengaturan');
                         "wa": wa,
                         "twitt": twitt,
                         "email": email,
+                        "alamat": alamat,
                         "csrf": csrf
                     },
                     success: function(e) {
@@ -188,6 +194,10 @@ $link = query('SELECT * FROM tbpengaturan');
                             swal.fire({
                                 icon: 'success',
                                 title: 'Data Success Edit'
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.reload();
+                                }
                             });
                         } else {
                             swal.fire({

@@ -11,6 +11,7 @@ if (isset($_POST['fb'])) {
     $inst   = htmlspecialchars(addslashes(trim($_POST['inst'])));
     $wa     = htmlspecialchars(addslashes(trim($_POST['wa'])));
     $email  = htmlspecialchars(addslashes(trim($_POST['email'])));
+    $alamat = htmlspecialchars(addslashes(trim($_POST['alamat'])));
     $csrf   = htmlspecialchars(addslashes(trim($_POST['csrf'])));
 
     $query = "UPDATE tbpengaturan SET 
@@ -19,8 +20,9 @@ if (isset($_POST['fb'])) {
                     twitter = '$twitt',
                     whatsapp = '$wa',
                     instagram = '$inst',
+                    alamat = '$alamat',
                     email = '$email'
-    ";
+            ";
 
     if (check_csrf($csrf)) {
         if (mysqli_query($con, $query)) {
