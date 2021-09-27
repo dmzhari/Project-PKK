@@ -10,4 +10,4 @@ if (!isset($_SESSION['nis']) && !isset($_SESSION['password']) && !isset($_SESSIO
 $judul = htmlspecialchars(addslashes(trim($_POST['judul'])));
 $query = query("SELECT * FROM tbpengumuman WHERE judul = '$judul'");
 
-echo $query[0]['pengumuman'];
+echo htmlspecialchars_decode($query[0]['pengumuman']);
