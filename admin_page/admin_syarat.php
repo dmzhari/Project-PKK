@@ -47,20 +47,24 @@ $query = query('SELECT * FROM tbdaftar');
     <div class="container">
         <div class="row">
             <div class="col-md-9 p-3 px-md-4 mr-auto offset-md-3">
-                <h5 class="text-center">Form Edit Syarat Daftar</h5>
-                <div class="form-group pt-3">
-                    <div class="input-group is-invalid">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text bg-transparent" for="judul">
-                                Judul
-                            </label>
+                <div class="card">
+                    <h4 class="text-center card-header">Form Edit Syarat Daftar</h4>
+                    <div class="card-body">
+                        <div class="form-group pt-3">
+                            <div class="input-group is-invalid">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text bg-transparent" for="judul">
+                                        Judul
+                                    </label>
+                                </div>
+                                <input type="text" name="judul" id="judul" class="bg-transparent form-control" placeholder="Masukan Judul" value="<?= $query[0]['jdsyarat'] ?>" required>
+                            </div>
+                            <textarea class="form-control"><?= $query[0]['syaratdaftar'] ?></textarea>
                         </div>
-                        <input type="text" name="judul" id="judul" class="bg-transparent form-control" placeholder="Masukan Judul" value="<?= $query[0]['jdsyarat'] ?>" required>
+                        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
+                        <button class="btn btn-primary form-control" id="sub">Submit</button>
                     </div>
-                    <textarea class="form-control"><?= $query[0]['syaratdaftar'] ?></textarea>
                 </div>
-                <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
-                <button class="btn btn-primary form-control" id="sub">Submit</button>
             </div>
         </div>
     </div>

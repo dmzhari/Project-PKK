@@ -29,27 +29,57 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#datasiswa" data-toggle="collapse" aria-expanded="false">
+                            <span class="fas fa-user-graduate fa-fw mr-2"></span>
+                            Data Siswa <span class="fas fa-caret-down fa-fw ml-auto"></span>
+                        </a>
+                        <div id="datasiswa" class="collapse submenu">
+                            <ul>
+                                <li class="mt-2">
+                                    <a href="admin_tambah_siswa.php">Tambah Siswa</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="admin_semua_siswa.php">Semua Siswa</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="admin_foto_siswa.php">Foto Siswa</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="admin_terima_siswa.php">Diterima</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="admin_tolak_siswa.php">Ditolak</a>
+                                </li>
+                                <li class="mt-2 mb-2">
+                                    <a href="admin_verifikasi_siswa.php">Belum Diverifikasi</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#submenu" data-toggle="collapse" aria-expanded="false">
                             <span class="fa fa-user fa-fw mr-2"></span>
-                            User <span class="fas fa-caret-down ml-auto"></span>
+                            User <span class="fas fa-caret-down fa-fw ml-auto"></span>
                         </a>
                         <div id='submenu' class="collapse submenu">
                             <ul>
-                                <li>
+                                <li class="mt-2">
                                     <a href="admin_profile.php">
                                         <span>Profile</span>
                                     </a>
                                 </li>
-                                <a href="admin_password.php">
-                                    <span>Setting Password</span>
-                                </a>
+                                <li class="mt-2 mb-2">
+                                    <a href="admin_password.php">
+                                        <span>Setting Password</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="admin_pengaturan.php">
                             <span class="fas fa-wrench fa-fw mr-2"></span>
-                            <span>Pengaturan Website</span>
+                            <span>Website</span>
                         </a>
                     </li>
                 </ul>

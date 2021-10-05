@@ -1,3 +1,8 @@
+<?php
+include '../config/functions.php';
+
+$header = query("SELECT * FROM tbpengaturan");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +26,7 @@
 	<link rel="stylesheet" href="../assets/css/all.min.css">
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="../<?= $header[0]['icon'] ?>" type="image/x-icon">
 	<title>Login Admin</title>
 </head>
 

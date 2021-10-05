@@ -4,10 +4,10 @@ include 'csrf-protect.php';
 
 error_reporting(0);
 
-$username = htmlspecialchars(addslashes(trim($_POST['username'])));
-$id     = htmlspecialchars(addslashes(trim($_POST['id'])));
-$file   = htmlspecialchars(addslashes(trim($_FILES['file']['name'])));
-$csrf   = htmlspecialchars(addslashes(trim($_POST['csrf'])));
+$username   = htmlspecialchars(addslashes(trim($_POST['username'])));
+$id         = htmlspecialchars(addslashes(trim($_POST['id'])));
+$file       = htmlspecialchars(addslashes(trim($_FILES['file']['name'])));
+$csrf       = htmlspecialchars(addslashes(trim($_POST['csrf'])));
 
 // location Upload
 $localtion = "img/$file";

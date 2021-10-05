@@ -9,8 +9,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
     exit();
 }
 
-$user = $_SESSION['username'];
-$query = query("SELECT * FROM tblogin WHERE username = '$user'");
+$user   = $_SESSION['username'];
+$query  = query("SELECT * FROM tblogin WHERE username = '$user'");
+$header = query("SELECT * FROM tbpengaturan");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,44 +35,51 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
     <link rel="stylesheet" href="../assets/css/animate.min.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../<?= $header[0]['icon'] ?>" type="image/x-icon">
     <title>Admin Dashboard</title>
 </head>
 
 <body>
     <?php include 'header.php' ?>
 
-    <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
-        <div class="text-center">
-            <h4>Form Change Password</h4>
-        </div>
-        <div class="form-group pt-3">
-            <div class="input-group is-invalid">
-                <div class="input-group-prepend">
-                    <label class="input-group-text bg-transparent" for="ypass">
-                        <i class="fas fa-key"></i>
-                    </label>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
+                <div class="card">
+                    <div class="text-center card-header">
+                        <h4>Form Change Password</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group pt-3">
+                            <div class="input-group is-invalid">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text bg-transparent" for="ypass">
+                                        <i class="fas fa-key"></i>
+                                    </label>
+                                </div>
+                                <input type="password" id="ypass" class="bg-transparent form-control" placeholder="Your Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group is-invalid">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text bg-transparent" for="npass">
+                                        <i class="fas fa-key"></i>
+                                    </label>
+                                </div>
+                                <input type="password" id="npass" class="bg-transparent form-control" placeholder="New Password" required>
+                            </div>
+                        </div>
+                        <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="showpass">
+                            <label class="custom-control-label" for="showpass">Show Password</label>
+                        </div>
+                        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
+                        <button class="btn btn-dark form-control" id="submit">Submit</button>
+                    </div>
                 </div>
-                <input type="password" id="ypass" class="bg-transparent form-control" placeholder="Your Password" required>
             </div>
         </div>
-        <div class="form-group">
-            <div class="input-group is-invalid">
-                <div class="input-group-prepend">
-                    <label class="input-group-text bg-transparent" for="npass">
-                        <i class="fas fa-key"></i>
-                    </label>
-                </div>
-                <input type="password" id="npass" class="bg-transparent form-control" placeholder="New Password" required>
-            </div>
-        </div>
-        <div class="form-group custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="showpass">
-            <label class="custom-control-label" for="showpass">Show Password</label>
-        </div>
-        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
-        <button class="btn btn-dark form-control" id="submit">Submit</button>
-    </div>
     </div>
 
     <!-- Jquery Js -->

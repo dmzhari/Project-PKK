@@ -10,8 +10,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_S
     exit();
 }
 
-$user = $_SESSION['username'];
-$query = query("SELECT * FROM tblogin WHERE username = '$user'");
+$user   = $_SESSION['username'];
+$query  = query("SELECT * FROM tblogin WHERE username = '$user'");
+$header = query("SELECT * FROM tbpengaturan");
 
 ?>
 <!DOCTYPE html>
@@ -39,35 +40,39 @@ $query = query("SELECT * FROM tblogin WHERE username = '$user'");
     <link rel="stylesheet" href="../assets/css/ekko-lightbox.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../<?= $header[0]['icon'] ?>" type="image/x-icon">
     <title>Admin Dashboard</title>
 </head>
 
 <body>
     <?php include 'header.php' ?>
 
-    <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
-        <div class="d-flex justify-content-center">
-            <a href="img/<?= $query[0]['image'] ?>" class="btn" data-title="Profile image" data-max-height="400" data-toggle="lightbox">
-                <img src="img/<?= $query[0]['image'] ?>" class="rounded rounded-circle" width="160px">
-            </a>
-        </div>
-        <div class="form-group">
-            <div class="input-group is-invalid">
-                <div class="input-group-prepend">
-                    <label class="input-group-text bg-transparent" for="username">
-                        Username
-                    </label>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 p-3 px-md-4 mr-auto offset-md-3">
+                <div class="d-flex justify-content-center">
+                    <a href="img/<?= $query[0]['image'] ?>" class="btn" data-title="Profile image" data-max-height="400" data-toggle="lightbox">
+                        <img src="img/<?= $query[0]['image'] ?>" class="rounded rounded-circle" width="160px">
+                    </a>
                 </div>
-                <input type="text" class="bg-transparent form-control" id="username" value="<?= $query[0]['username'] ?>">
+                <div class="form-group">
+                    <div class="input-group is-invalid">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text bg-transparent" for="username">
+                                Username
+                            </label>
+                        </div>
+                        <input type="text" class="bg-transparent form-control" id="username" value="<?= $query[0]['username'] ?>">
+                    </div>
+                </div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="myprofile" name="myimage">
+                    <label class="custom-file-label" for="myprofile">Chose file to change image</label>
+                </div>
+                <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
+                <button class="btn btn-primary mt-2 form-control" id="edit">Edit data</button>
             </div>
         </div>
-        <div class="custom-file">
-            <input type="file" class="custom-file-input" id="myprofile" name="myimage">
-            <label class="custom-file-label" for="myprofile">Chose file to change image</label>
-        </div>
-        <input type="hidden" id="csrf" value="<?= csrf_token() ?>">
-        <button class="btn btn-primary mt-2 form-control" id="edit">Edit data</button>
     </div>
 
     <!-- Jquery -->
