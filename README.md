@@ -20,7 +20,7 @@ Fitur Di Project Kami Adalah Sebagai Berikut :
     - Cek Pengumuman
     - Dll
 
-## Cara Install Dan Settin
+## Cara Install Dan Setting
   - Download Source Code Ini Ke File Manager Kalian
   - Buka Phpmyadmin Dan Buatlah Database Dengan Nama "dbapp", Lalu Import File .sql dari folder /db
   - Setting config/function.php
