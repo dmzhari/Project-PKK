@@ -1,7 +1,8 @@
 <?php
 include 'config/functions.php';
 
-$link = query("SELECT * FROM tbpengaturan");
+$link       = query("SELECT * FROM tbpengaturan");
+$visimisi   = query("SELECT * FROM tbvisimisi");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +28,7 @@ $link = query("SELECT * FROM tbpengaturan");
     <link rel="stylesheet" href="assets/css/style3.css?version=<?= filemtime('assets/css/style3.css') ?>">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= $link[0]['icon'] ?>" type="image/x-icon">
     <title>Kelompok 1 | Beranda</title>
 </head>
 
@@ -49,6 +50,8 @@ $link = query("SELECT * FROM tbpengaturan");
                             Pendaftaran
                         </a>
                         <div class="dropdown-menu animate__animated" aria-labelledby="submenu">
+                            <a class="dropdown-item" href="daftar.php">Daftar PPDB</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="alur.php">Alur Pendaftaran</a>
                             <a class="dropdown-item" href="syarat.php">Syarat Pendaftaran</a>
                             <a class="dropdown-item" href="panduan.php">Panduan Pendaftaran</a>
@@ -74,38 +77,55 @@ $link = query("SELECT * FROM tbpengaturan");
         </div>
     </div>
 
-    <section class="about text-white">
+    <div class="about text-white">
         <div class="container">
             <div class="row">
-                <div class="col-md-4 pt-3">
+                <div class="col-md-12 pt-3 pb-2">
+                    <h5><?= $link[0]['about'] ?></h5>
+                </div>
+                <div class="col-md-12 pt-3">
                     <h4>
                         <i class="fas fa-home"></i>
                         Alamat
                     </h4>
                     <p><?= $link[0]['alamat'] ?></p>
                 </div>
-                <div class="col-md-4 pt-3">
+                <div class="col-md-12 pt-3">
                     <h4>
                         <i class="fas fa-envelope"></i>
                         Email
                     </h4>
                     <p><a href="mailto:<?= $link[0]['email'] ?>"><?= $link[0]['email'] ?></a></p>
                 </div>
-                <div class="col-md-4 pt-3">
+                <div class="col-md-12 pt-3">
                     <h4>
                         <i class="fas fa-phone"></i>
                         Nomo telp
                     </h4>
                     <p><?= $link[0]['whatsapp'] ?></p>
                 </div>
-                <div class="col-md-12 pt-4">
-                    <h5><?= $link[0]['about'] ?></h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact text-white pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-center">Visi dan Misi</h4>
+                    <p>Sekolah ini memiliki visi dan misi sebagai berikut,</p>
+
+                    <ul class="list-group list-group-flush">
+                        <?php foreach ($visimisi as $row) { ?>
+                            <li class="list-group-item bg-transparent border-white border-bottom">
+                                <?= $row['visimisi'] ?>
+                            </li>
+                        <?php } ?>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
-
-    <div id="map"></div>
+    </div>
 
     <!-- Footer -->
     <div class="footer">

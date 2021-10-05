@@ -28,8 +28,8 @@ $link = query("SELECT * FROM tbpengaturan");
     <link rel="stylesheet" href="assets/css/style3.css?version=<?= filemtime('assets/css/style3.css') ?>">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Kelompok 1 | Beranda</title>
+    <link rel="shortcut icon" href="<?= $link[0]['icon'] ?>" type="image/x-icon">
+    <title><?= $link[0]['judul_situs'] ?></title>
 </head>
 
 <body>
@@ -50,6 +50,8 @@ $link = query("SELECT * FROM tbpengaturan");
                             Pendaftaran
                         </a>
                         <div class="dropdown-menu animate__animated" aria-labelledby="submenu">
+                            <a class="dropdown-item" href="daftar.php">Daftar PPDB</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="alur.php">Alur Pendaftaran</a>
                             <a class="dropdown-item" href="syarat.php">Syarat Pendaftaran</a>
                             <a class="dropdown-item" href="panduan.php">Panduan Pendaftaran</a>

@@ -29,8 +29,8 @@ $query = query("SELECT * FROM tbpengaturan");
     <link rel="stylesheet" href="assets/css/style3.css?version=<?= filemtime('assets/css/style3.css') ?>">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>Kelompok 1 | Beranda</title>
+    <link rel="icon" href="<?= $query[0]['icon'] ?>" type="image/x-icon">
+    <title><?= $query[0]['judul_situs'] ?></title>
 </head>
 
 <body>
@@ -51,6 +51,8 @@ $query = query("SELECT * FROM tbpengaturan");
                             Pendaftaran
                         </a>
                         <div class="dropdown-menu animate__animated" aria-labelledby="submenu">
+                            <a class="dropdown-item" href="daftar.php">Daftar PPDB</a>
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="alur.php">Alur Pendaftaran</a>
                             <a class="dropdown-item" href="syarat.php">Syarat Pendaftaran</a>
                             <a class="dropdown-item" href="panduan.php">Panduan Pendaftaran</a>
@@ -98,7 +100,7 @@ $query = query("SELECT * FROM tbpengaturan");
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Login -->
     <div class="contact">
         <div class="container">
             <div class="row" data-aos="fade-down" data-aos-duration="2000">
@@ -108,10 +110,14 @@ $query = query("SELECT * FROM tbpengaturan");
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="nis" placeholder="nis">
+                            <input type="text" class="form-control" id="username" placeholder="username">
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" id="pass" placeholder="password">
+                        </div>
+                        <div class="form-group custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="showpass">
+                            <label class="custom-control-label" for="showpass">Show Password</label>
                         </div>
                         <button class="btn btn-primary form-control" id="submit">Submit</button>
                     </div>
@@ -184,16 +190,24 @@ $query = query("SELECT * FROM tbpengaturan");
                 $('#clpse-icon').toggleClass("fa-arrow-up-animated");
             });
 
+            $('#showpass').click(function(e) {
+                if ($(this).is(':checked')) {
+                    $('#pass').attr('type', 'text');
+                } else {
+                    $('#pass').attr('type', 'password');
+                }
+            });
+
             $('#submit').click(function() {
-                let nis = $('#nis').val();
+                let username = $('#username').val();
                 let pass = $('#pass').val();
 
-                if (nis && pass !== '') {
+                if (username && pass !== '') {
                     $.ajax({
                         url: "user_login.php",
                         type: 'POST',
                         data: {
-                            "nis": nis,
+                            "username": username,
                             "pass": pass,
                             "sub": 'submit'
                         },

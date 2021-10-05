@@ -2,7 +2,7 @@
 session_start();
 include 'config/functions.php';
 
-if (!isset($_SESSION['nis']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
+if (!isset($_SESSION['username']) && !isset($_SESSION['password']) && !isset($_SESSION['id'])) {
     header('location: index.php');
     exit();
 }
