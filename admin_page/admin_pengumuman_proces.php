@@ -28,7 +28,7 @@ if (isset($_POST['pengumuman'])) {
     $tambahjudul    = htmlspecialchars(addslashes(trim($_POST['tambahjudul'])));
     $dest           = htmlspecialchars(addslashes(trim($_POST['dest'])));
 
-    $adddata        = "INSERT INTO tbpengumuman VALUES ('', '$tambahjudul', '$dest')";
+    $adddata        = "INSERT INTO tbpengumuman VALUES (null, '$tambahjudul', '$dest')";
 
     if (check_csrf($csrf)) {
         if (mysqli_query($con, $adddata)) {

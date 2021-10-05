@@ -7,7 +7,7 @@ $csrf           = htmlspecialchars(addslashes(trim($_POST['csrf'])));
 if (isset($_POST['username'])) {
     $username   = htmlspecialchars(addslashes(trim($_POST['username'])));
     $password   = htmlspecialchars(addslashes(trim($_POST['password'])));
-    $query      = "INSERT INTO tblogin VALUES ('', '$username', '$password', 'admin.jpg')";
+    $query      = "INSERT INTO tblogin VALUES (null, '$username', '$password', 'admin.jpg')";
 
     if (check_csrf($csrf)) {
         if (mysqli_query($con, $query)) {

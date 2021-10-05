@@ -87,7 +87,7 @@ if (isset($_POST['fb'])) {
     }
 } else if (isset($_POST['tambahvisimisi'])) {
     $tambahvisimisi   = htmlspecialchars(addslashes(trim($_POST['visimisi'])));
-    $query            = "INSERT INTO tbvisimisi VALUES ('', '$tambahvisimisi')";
+    $query            = "INSERT INTO tbvisimisi VALUES (null, '$tambahvisimisi')";
 
     if (check_csrf($csrf)) {
         if (mysqli_query($con, $query)) {
