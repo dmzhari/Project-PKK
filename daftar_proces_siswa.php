@@ -32,7 +32,7 @@ if (isset($_POST['tambahsiswa'])) {
     if (check_csrf($csrf)) {
         if (in_array($file_ext, $image_ext)) {
             if (move_uploaded_file($_FILES['file']['tmp_name'], $localtion)) {
-                $query  = "INSERT INTO tbsiswa VALUES ('',
+                $query  = "INSERT INTO tbsiswa VALUES (null,
                                         '$nis',
                                         '$username',
                                         '$password',
