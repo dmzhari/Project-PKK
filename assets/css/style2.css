@@ -63,9 +63,9 @@ body {
     color: inherit;
 }
 
-.sidebar-heading {
-    font-size: .75rem;
-    text-transform: uppercase;
+.table-image td,
+.table-image th {
+    vertical-align: middle;
 }
 
 .navbar-brand {

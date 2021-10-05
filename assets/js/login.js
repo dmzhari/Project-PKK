@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $('#back').click(function (e) {
         e.preventDefault();
-        history.back(1);
+        window.location.href = '../index.php';
     });
 
     $('#login').click(function () {
