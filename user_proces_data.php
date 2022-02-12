@@ -23,7 +23,7 @@ $imagebefore    = htmlspecialchars(addslashes(trim($_POST['imagebefore'])));
 $csrf           = htmlspecialchars(addslashes(trim($_POST['csrf'])));
 
 // location Upload
-$localtion = "assets/img/$file";
+$localtion = "assets/img/$foto";
 
 // File Extension
 $file_ext = pathinfo($localtion, PATHINFO_EXTENSION);
@@ -33,7 +33,7 @@ $file_ext = strtolower($file_ext);
 $image_ext = array('jpg', 'jpeg', 'png');
 
 if (isset($_POST['editprofile'])) {
-    $query = "UPDATE tbsiswa SET username = '$username',password = '$password',nis = '$nis', foto = '$file' WHERE id = '$id'";
+    $query = "UPDATE tbsiswa SET username = '$username',password = '$password',nis = '$nis', foto = '$foto' WHERE id = '$id'";
 
     if (check_csrf($csrf)) {
         if (in_array($file_ext, $image_ext)) {
